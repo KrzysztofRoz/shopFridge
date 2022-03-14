@@ -4,21 +4,32 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 
 public class ListaZakupow {
+    
+    private HashMap<String,Integer> listaZakupow=new HashMap<>();
+    private HashMap<String,Integer> lodowka=new HashMap<>();
+    
     public static void main(String[] args) throws IOException {
         BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
-        HashMap<String,Integer> listaZakupow=new HashMap<>();
-        HashMap<String,Integer> lodowka=new HashMap<>();
+        ListaZakupow wybor=new ListaZakupow();
 
         System.out.println("Jeżeli chcesz tylko ustawić lodówke wpisz 0, jeżeli chcesz uzupełnić tylko liste wpisz 1,jeżeli chcesz wykonać obie rzeczy wpisz 2: ");
         int opcja=Integer.parseInt(reader.readLine());
+        wybor.options(opcja);
+
+        
+
+    }
+    
+        public void options(Integer opcja) throws IOException{
         if(opcja==0)
             setLodowka(lodowka);
         if(opcja==1)
             setListaZakupow(listaZakupow);
-        if(opcja==2){
+        if(opcja==2) {
             setLodowka(lodowka);
             setListaZakupow(listaZakupow);
         }
+
     }
 
 
