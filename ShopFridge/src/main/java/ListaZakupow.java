@@ -40,19 +40,17 @@ public class ListaZakupow {
 
     public static void setLodowka(HashMap<String,Integer> stanLodowki) throws IOException{
         BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
-
-        while(true){
+        
+        String czyJuz ="";
+        while(!(czyJuz.equals("koniec"))){
             System.out.println("Wpisz nazwe produktu, który masz w lodówce: ");
             String produkt= reader.readLine();
+            
             System.out.println("Wpisz ile sztuk lub ile gramów produktu posiadasz w lodówce: ");
             Integer ilosc=Integer.parseInt(reader.readLine());
-            if(ilosc==null)
-                ilosc=0;
             addProdukt(produkt,ilosc,stanLodowki);
             System.out.println(produkt +" został dodany do twojej lodówki, aby zakończyć dodawania wpisz koniec, jeśli chcesz dalej dodawać wpisz kolejny");
             String czyJuz= reader.readLine();
-            if(czyJuz.equals("koniec"))
-                break;
         }
     }
 
@@ -60,19 +58,18 @@ public class ListaZakupow {
     public static void setListaZakupow(HashMap<String,Integer> listaZakupow) throws IOException{
         BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
 
-        while(true){
+        String czyJuz ="";
+        while(!(czyJuz.equals("koniec"))){
             System.out.println("Wpisz nazwe produktu, który chcesz dodać do listy zakupów: ");
             String produkt= reader.readLine();
-
+            
             System.out.println("Wpisz ile sztuk lub ile gramów produktu chcesz dodać do listy: ");
             Integer ilosc=Integer.parseInt(reader.readLine());
-            if(ilosc==null)
-                ilosc=0;
             addProdukt(produkt,ilosc,listaZakupow);
+            
             System.out.println(produkt +" został dodany do listy zakupów, aby zakończyć dodawania wpisz koniec, jeśli chcesz coś jeszcze dodać wpisz dodaj");
-            String czyJuz= reader.readLine();
-            if(czyJuz.equals("koniec"))
-                break;
+            czyJuz= reader.readLine();
+
         }
     }
 
