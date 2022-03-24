@@ -8,31 +8,52 @@ class ShopFridge {
 
     public static void main(String[] args) throws IOException {
         BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
-        ShopFridge wybor=new ShopFridge();
+        ShopFridge shopFridge=new ShopFridge();
 
-        System.out.println("If you want to set your fridge status write 0, if you want create shopping list write 1,if you want do both write 2: ");
-        int opcja=Integer.parseInt(reader.readLine());
-        wybor.options(opcja);
+        startShopFridge(shopFridge);
 
+    }
+        public static void startShopFridge(ShopFridge shopFridge) throws IOException{
+        BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+        boolean run=true;
 
+        while(run){
+            System.out.println("\nWrite: 1-to create new Fridge " +
+                    "\n 2-to create new Shopping list " +
+                    "\n 3-to create new Fridge and Shopping list" +
+                    "\n 0=to exit");
+            int option=Integer.parseInt(reader.readLine());
+            run=shopFridge.options(option);
+
+        }
 
     }
 
-    public void options(Integer option) throws IOException{
+    public boolean options(Integer option) throws IOException{
         if(option==0){
-            Fridge fridge=new Fridge();
-            setFridgeStatus(listOfFridgeProducts(),fridge);
+            return false;
         }
         if(option==1){
-            ShoppingList shoppingList=new ShoppingList();
-            setShoppingList(listOfProducts(),shoppingList);
-        }
-        if(option==2) {
             Fridge fridge=new Fridge();
-            setFridgeStatus(listOfFridgeProducts(),fridge);
-            ShoppingList shoppingList=new ShoppingList();
-            setShoppingList(listOfProducts(),shoppingList);
+            fridge.addToFridge(listOfFridgeProducts());
+            return true;
         }
+        if(option==2){
+            ShoppingList shoppingList=new ShoppingList();
+            shoppingList.addToShoppingList(listOfProducts());
+            return true;
+
+        }
+        if(option==3) {
+            Fridge fridge=new Fridge();
+            fridge.addToFridge(listOfFridgeProducts());
+            ShoppingList shoppingList=new ShoppingList();
+            shoppingList.addToShoppingList(listOfProducts());
+            return true;
+
+        }
+        System.out.println("Please select number between 0 and 9");
+        return true;
 
     }
 
@@ -56,11 +77,7 @@ class ShopFridge {
         return list;
     }
 
-    public void setFridgeStatus(LinkedList<FridgeProduct> list, Fridge fridge){
-        for(int i=0;i<list.size();i++){
-            fridge.addToFridge(list.get(i));
-        }
-    }
+
 
 
     public LinkedList<Product> listOfProducts() throws IOException{
@@ -83,11 +100,6 @@ class ShopFridge {
         return list;
     }
 
-    public void setShoppingList(LinkedList<Product> list, ShoppingList shoppingList){
-        for(int i=0;i< list.size();i++){
-            shoppingList.addToShoppingList(list.get(i));
-        }
-    }
 
 }
 class FridgeProduct extends Product{
@@ -147,6 +159,12 @@ class Fridge{
     public LinkedList<FridgeProduct> getContents() {
         return contents;
     }
+    
+    public void addToFridge(LinkedList<FridgeProduct> list){
+        for(int i=0;i<list.size();i++){
+            contents.add(list.get(i));
+        }
+    }
 
 }
 
@@ -162,6 +180,11 @@ class ShoppingList{
     }
     public LinkedList<Product> getShoppingList() {
         return shoppingList;
+    }
+    public void addToShoppingList(LinkedList<Product> list){
+        for(int i=0;i<list.size();i++){
+            shoppingList.add(list.get(i));
+        }
     }
 
 }
