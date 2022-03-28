@@ -128,6 +128,32 @@ class ShopFridge {
         checkedShoppingList.addToShoppingList(shoppingListContent);
         return checkedShoppingList;
     }
+    
+        public ShoppingList fillGaps(Fridge fridge, ShoppingList shoppingList){
+        LinkedList<FridgeProduct> fridgeContent=fridge.getContents();
+        LinkedList<Product> shoppingListContent=shoppingList.getShoppingList();
+
+        for(int i=0;i<fridgeContent.size();i++){
+            String productName=fridgeContent.get(i).getName();
+            if(fridgeContent.get(i).getMin()>fridgeContent.get(i).getQuantity()){
+                int gaps=fridgeContent.get(i).getMin()-fridgeContent.get(i).getQuantity();
+                for(int j=0;j<shoppingListContent.size();j++){
+                    if(shoppingListContent.get(j).getName().equals(productName)){
+                        if(shoppingListContent.get(j).getQuantity()<gaps)
+                            shoppingListContent.get(j).setQuantity(gaps);
+                    }
+                    else{
+                        Product missingProduct=new Product();
+                        missingProduct.setProduct(productName,gaps);
+                        shoppingListContent.add(missingProduct);
+                    }
+                }
+            }
+        }
+        ShoppingList checkedShoppingList=new ShoppingList();
+        checkedShoppingList.addToShoppingList(shoppingListContent);
+        return checkedShoppingList;
+    }
 
 
 }
