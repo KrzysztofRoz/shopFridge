@@ -57,9 +57,9 @@ class ShopFridge {
 
     }
 
-    public LinkedList<FridgeProduct> listOfFridgeProducts() throws IOException{
+    public ArrayList<FridgeProduct> listOfFridgeProducts() throws IOException{
         BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
-        LinkedList<FridgeProduct> list=new LinkedList<>();
+        ArrayList<FridgeProduct> list=new ArrayList<>();
 
             String isLast="";
         while(!isLast.equals("last")){
@@ -80,9 +80,9 @@ class ShopFridge {
 
 
 
-    public LinkedList<Product> listOfProducts() throws IOException{
+    public ArrayList<Product> listOfProducts() throws IOException{
         BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
-        LinkedList<Product> list=new LinkedList<>();
+        ArrayList<Product> list=new ArrayList<>();
 
         String isLast="";
         while(!isLast.equals("last")){
@@ -103,8 +103,8 @@ class ShopFridge {
     
         public ShoppingList removeExcess(Fridge fridge, ShoppingList shoppingList){
 
-        LinkedList<FridgeProduct> fridgeContent=fridge.getContents();
-        LinkedList<Product> shoppingListContent=shoppingList.getShoppingList();
+        ArrayList<FridgeProduct> fridgeContent=fridge.getContents();
+        ArrayList<Product> shoppingListContent=shoppingList.getShoppingList();
 
     //remove products from shopping list if we got too much of the product in our fridge, or change the products quantity to not exceeds max value
         for(int i=0;i<shoppingListContent.size();i++){
@@ -130,8 +130,8 @@ class ShopFridge {
     }
     
         public ShoppingList fillGaps(Fridge fridge, ShoppingList shoppingList){
-        LinkedList<FridgeProduct> fridgeContent=fridge.getContents();
-        LinkedList<Product> shoppingListContent=shoppingList.getShoppingList();
+        ArrayList<FridgeProduct> fridgeContent=fridge.getContents();
+        ArrayList<Product> shoppingListContent=shoppingList.getShoppingList();
 
         for(int i=0;i<fridgeContent.size();i++){
             String productName=fridgeContent.get(i).getName();
@@ -204,7 +204,7 @@ class Product{
 }
 
 class Fridge{
-    private LinkedList<FridgeProduct> contents=new LinkedList<>();
+    private ArrayList<FridgeProduct> contents=new ArrayList<>();
 
     public void addToFridge(FridgeProduct product){
         contents.add(product);
@@ -214,11 +214,11 @@ class Fridge{
         contents.remove(product);
     }
 
-    public LinkedList<FridgeProduct> getContents() {
+    public ArrayList<FridgeProduct> getContents() {
         return contents;
     }
     
-    public void addToFridge(LinkedList<FridgeProduct> list){
+    public void addToFridge(ArrayList<FridgeProduct> list){
         for(int i=0;i<list.size();i++){
             contents.add(list.get(i));
         }
@@ -227,7 +227,7 @@ class Fridge{
 }
 
 class ShoppingList{
-    private LinkedList<Product> shoppingList=new LinkedList<>();
+    private ArrayList<Product> shoppingList=new ArrayList<>();
 
     public void addToShoppingList(Product product){
         shoppingList.add(product);
@@ -236,10 +236,10 @@ class ShoppingList{
     public void remove(Product product){
         shoppingList.remove(product);
     }
-    public LinkedList<Product> getShoppingList() {
+    public ArrayList<Product> getShoppingList() {
         return shoppingList;
     }
-    public void addToShoppingList(LinkedList<Product> list){
+    public void addToShoppingList(ArrayList<Product> list){
         for(int i=0;i<list.size();i++){
             shoppingList.add(list.get(i));
         }
