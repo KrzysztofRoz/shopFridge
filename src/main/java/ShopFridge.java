@@ -1,8 +1,8 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 class ShopFridge {
     private ArrayList<Fridge> myFridges=new ArrayList<>();
@@ -15,7 +15,8 @@ class ShopFridge {
         startShopFridge(shopFridge);
 
     }
-        public static void startShopFridge(ShopFridge shopFridge) throws IOException{
+
+    public static void startShopFridge(ShopFridge shopFridge) throws IOException{
         BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
         boolean run=true;
 
@@ -23,7 +24,7 @@ class ShopFridge {
             System.out.println("\nWrite: 1-to create new Fridge " +
                     "\n 2-to create new Shopping list " +
                     "\n 3-to create new Fridge and Shopping list" +
-                    "\n 0=to exit");
+                    "\n 0-to exit");
             int option=Integer.parseInt(reader.readLine());
             run=shopFridge.options(option);
 
@@ -69,12 +70,11 @@ class ShopFridge {
 
             String isLast="";
         while(!isLast.equals("last")){
-            FridgeProduct product=new FridgeProduct();
             System.out.println("Write name of product in your fridge: ");
             String name= reader.readLine();
             System.out.println("How much of " + name + " you got in your fridge?");
             Integer quantity=Integer.parseInt(reader.readLine());
-            product.setProduct(name,quantity);
+            FridgeProduct product=new FridgeProduct(name,quantity);
             list.add(product);
             System.out.println(name +" was add to your fridge, if it's your last product write 'last', if you want add more write 'more'. ");
             isLast= reader.readLine();
@@ -84,20 +84,17 @@ class ShopFridge {
     }
 
 
-
-
     public ArrayList<Product> listOfProducts() throws IOException{
         BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
         ArrayList<Product> list=new ArrayList<>();
 
         String isLast="";
         while(!isLast.equals("last")){
-            Product product=new Product();
             System.out.println("Write name of product you want to buy: ");
             String name= reader.readLine();
             System.out.println("How much of " + name + " you want to buy?");
             Integer quantity=Integer.parseInt(reader.readLine());
-            product.setProduct(name,quantity);
+            Product product=new Product(name,quantity);
             list.add(product);
             System.out.println(name +" was add to your shopping list, if it's your last product write 'last', if you want add more write 'more'. ");
             isLast= reader.readLine();
@@ -105,9 +102,8 @@ class ShopFridge {
         }
         return list;
     }
-    
-    
-        public ShoppingList removeExcess(Fridge fridge, ShoppingList shoppingList){
+
+    public ShoppingList removeExcess(Fridge fridge, ShoppingList shoppingList){
 
         ArrayList<FridgeProduct> fridgeContent=fridge.getContents();
         ArrayList<Product> shoppingListContent=shoppingList.getShoppingList();
@@ -135,7 +131,7 @@ class ShopFridge {
         return checkedShoppingList;
     }
     
-        public ShoppingList fillGaps(Fridge fridge, ShoppingList shoppingList){
+    public ShoppingList fillGaps(Fridge fridge, ShoppingList shoppingList){
         ArrayList<FridgeProduct> fridgeContent=fridge.getContents();
         ArrayList<Product> shoppingListContent=shoppingList.getShoppingList();
 
@@ -149,8 +145,7 @@ class ShopFridge {
                             shoppingListContent.get(j).setQuantity(gaps);
                     }
                     else{
-                        Product missingProduct=new Product();
-                        missingProduct.setProduct(productName,gaps);
+                        Product missingProduct=new Product(productName,gaps);
                         shoppingListContent.add(missingProduct);
                     }
                 }
@@ -167,6 +162,10 @@ class FridgeProduct extends Product{
     private int min=0;
     private int max=99;
 
+    public FridgeProduct(String name, int quantity) {
+        super(name, quantity);
+    }
+
     public void changeMin(int min){
         this.min=min;
     }
@@ -181,12 +180,14 @@ class FridgeProduct extends Product{
 class Product{
     private String name;
     private int quantity;
-    
-    
-    
+
     public Product(String name, int quantity){
         this.name=name;
         this.quantity=quantity;
+    }
+    public Product(String name){
+        this.name=name;
+        this.quantity=0;
     }
 
 
@@ -204,9 +205,7 @@ class Product{
         this.name=name;
         this.quantity=0;
     }
-    
     public void setQuantity(int quantity){this.quantity=quantity;}
-
 
     public int getQuantity() {
         return quantity;
@@ -230,7 +229,7 @@ class Fridge{
     public ArrayList<FridgeProduct> getContents() {
         return contents;
     }
-    
+
     public void addToFridge(ArrayList<FridgeProduct> list){
         for(int i=0;i<list.size();i++){
             contents.add(list.get(i));
@@ -252,6 +251,7 @@ class ShoppingList{
     public ArrayList<Product> getShoppingList() {
         return shoppingList;
     }
+
     public void addToShoppingList(ArrayList<Product> list){
         for(int i=0;i<list.size();i++){
             shoppingList.add(list.get(i));
