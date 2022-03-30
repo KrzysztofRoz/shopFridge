@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.ArrayList;
 
 class ShopFridge {
+    private ArrayList<Fridge> myFridges=new ArrayList<>();
+    private ArrayList<ShoppingList> myShoppingLists=new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
         BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
@@ -36,19 +38,23 @@ class ShopFridge {
         if(option==1){
             Fridge fridge=new Fridge();
             fridge.addToFridge(listOfFridgeProducts());
+            myFridges.add(fridge);
             return true;
         }
         if(option==2){
             ShoppingList shoppingList=new ShoppingList();
             shoppingList.addToShoppingList(listOfProducts());
+            myShoppingLists.add(shoppingList);
             return true;
 
         }
         if(option==3) {
             Fridge fridge=new Fridge();
             fridge.addToFridge(listOfFridgeProducts());
+            myFridges.add(fridge);
             ShoppingList shoppingList=new ShoppingList();
             shoppingList.addToShoppingList(listOfProducts());
+            myShoppingLists.add(shoppingList);
             return true;
 
         }
