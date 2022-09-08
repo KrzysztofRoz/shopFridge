@@ -23,4 +23,4 @@ ShoppingListEditor - class which contains methods to reduce excess products, and
 ListCreator - class contains logic to create a shopping list and fridge
 
 ---
-EditView - class which contains methods to edit list, fridge and content (change name,dalate, change name and quantity of specyfic product on list etc.)
+EditView - class which contains methods to edit list, fridge and content (change name,delete, change name and quantity of specyfic product on list etc.)
