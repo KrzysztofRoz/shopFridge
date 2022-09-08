@@ -1,5 +1,5 @@
 # shopFridge
-Program to create shopping list and list of products in your fridge.
+Program to manage your fridge and shopping.
 ===============================================
 
 ShopFridge class - main class, which also have some logic for test reasons and console interface. 
