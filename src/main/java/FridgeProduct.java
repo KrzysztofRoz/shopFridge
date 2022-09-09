@@ -9,11 +9,11 @@ class FridgeProduct extends Product {
     public FridgeProduct(String name){super(name);}
 
     public void setMin(int min) {
-        this.min = min;
+        this.min = Math.max(min, 0);
     }
 
     public void setMax(int max) {
-        this.max = max;
+        this.max = Math.max(max, this.min);
     }
 
     public int getMin() {
