@@ -163,4 +163,10 @@ class ShopFridge {
     public void setMyShoppingLists(ArrayList<ShoppingList> myShoppingLists) {
         this.myShoppingLists = myShoppingLists;
     }
+    
+                               
+    public ListCreator getCreator() {
+        return creator;
+    }
+                               
 }
