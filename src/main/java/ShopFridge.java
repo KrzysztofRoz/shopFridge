@@ -72,6 +72,7 @@ class ShopFridge {
             case(4):
                 return true;
             case(5):
+                System.out.println("Write name of the fridge:");
                 String searchedFridge= reader.readLine();
                 int ind=findFridgeByName(searchedFridge);
                 if(ind !=-1){
@@ -81,6 +82,7 @@ class ShopFridge {
                 System.out.println("Fridge not found");
                 return  true;
             case(6):
+                System.out.println("Write name of the Shopping List:");
                 String searchedName= reader.readLine();
                 int index=findListByName(searchedName);
                 if(index!=-1){
